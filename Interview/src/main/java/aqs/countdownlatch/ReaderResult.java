@@ -1,4 +1,4 @@
-package notify;
+package aqs.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 

@@ -1,4 +1,4 @@
-package thread;
+package aqs.cyclicbarrier;
 
 import java.util.concurrent.CyclicBarrier;
 
