@@ -22,14 +22,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-spancollector-http</artifactId>
-            <version>3.9.0</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>24.0-jre</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-instrumentation-httpclient</artifactId>
-            <version>4.16.3-SNAPSHOT</version>
+            <artifactId>brave-spancollector-http</artifactId>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

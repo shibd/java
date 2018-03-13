@@ -1,4 +1,4 @@
-package com.baozi.brave.test;
+package com.baozi.brave.bean;
 
 import com.github.kristofa.brave.KeyValueAnnotation;
 import com.github.kristofa.brave.ServerRequestAdapter;
@@ -7,6 +7,7 @@ import com.github.kristofa.brave.TraceData;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -17,17 +18,20 @@ public class ServerRequestAdapterImpl implements ServerRequestAdapter {
     Random randomGenerator = new Random();
     SpanId spanId;
     String spanName;
+    Map<String, String> map;
 
-    ServerRequestAdapterImpl(String spanName){
+    public ServerRequestAdapterImpl(String spanName, Map map) {
         this.spanName = spanName;
         long startId = randomGenerator.nextLong();
         SpanId spanId = SpanId.builder().spanId(startId).traceId(startId).parentId(startId).build();
         this.spanId = spanId;
+        this.map = map;
     }
 
-    ServerRequestAdapterImpl(String spanName, SpanId spanId){
+    public ServerRequestAdapterImpl(String spanName, SpanId spanId, Map map) {
         this.spanName = spanName;
         this.spanId = spanId;
+        this.map = map;
     }
 
     @Override
@@ -48,9 +52,12 @@ public class ServerRequestAdapterImpl implements ServerRequestAdapter {
     @Override
     public Collection<KeyValueAnnotation> requestAnnotations() {
         Collection<KeyValueAnnotation> collection = new ArrayList<KeyValueAnnotation>();
-            KeyValueAnnotation kv = KeyValueAnnotation.create("radioid", "165646485468486364");
-            collection.add(kv);
+        if (map != null && !map.isEmpty()) {
+            for (Map.Entry<String, String> e : map.entrySet()) {
+                KeyValueAnnotation kv = KeyValueAnnotation.create(e.getKey(), e.getValue());
+                collection.add(kv);
+            }
+        }
         return collection;
     }
-
 }

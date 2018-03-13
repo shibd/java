@@ -1,4 +1,4 @@
-package com.baozi.brave.test;
+package com.baozi.brave.bean;
 
 import com.github.kristofa.brave.ClientRequestAdapter;
 import com.github.kristofa.brave.KeyValueAnnotation;
@@ -7,6 +7,7 @@ import com.twitter.zipkin.gen.Endpoint;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by baozi on 2018/2/26.
@@ -15,9 +16,15 @@ public class ClientRequestAdapterImpl implements ClientRequestAdapter {
 
     String spanName;
     SpanId spanId;
+    Map<String, String> map;
 
-    ClientRequestAdapterImpl(String spanName){
+    public ClientRequestAdapterImpl(String spanName) {
         this.spanName = spanName;
+    }
+
+    public ClientRequestAdapterImpl(String spanName, Map map) {
+        this.spanName = spanName;
+        this.map = map;
     }
 
     public SpanId getSpanId() {
@@ -42,8 +49,12 @@ public class ClientRequestAdapterImpl implements ClientRequestAdapter {
     @Override
     public Collection<KeyValueAnnotation> requestAnnotations() {
         Collection<KeyValueAnnotation> collection = new ArrayList<KeyValueAnnotation>();
-//            KeyValueAnnotation kv = KeyValueAnnotation.create("radioid", "165646485468486364");
-//            collection.add(kv);
+        if (map != null && !map.isEmpty()) {
+            for (Map.Entry<String, String> e : map.entrySet()) {
+                KeyValueAnnotation kv = KeyValueAnnotation.create(e.getKey(), e.getValue());
+                collection.add(kv);
+            }
+        }
         return collection;
     }
 
