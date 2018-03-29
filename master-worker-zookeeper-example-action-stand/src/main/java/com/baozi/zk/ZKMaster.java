@@ -19,7 +19,7 @@ public class ZKMaster {
     private volatile boolean isMaster = false;
 
     public ZKMaster() {
-        client = new ZkClient(CONNECTION_STRING, Integer.MAX_VALUE);
+        client = new ZkClient(CONNECTION_STRING, 5, Integer.MAX_VALUE);
     }
 
     public void takeMaster() {

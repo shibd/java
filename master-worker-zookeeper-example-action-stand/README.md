@@ -19,3 +19,5 @@
 - A client can request a watch on an existing node. If the node is deleted, then client is notified.
  
 [参考文章](https://www.simplybusiness.co.uk/about-us/tech/2017/10/zookeeper-active-standby-master-process/)
+
+[curator参考链接](https://blog.csdn.net/dc_726/article/details/46475633)
