@@ -26,6 +26,7 @@ public class CuratorLeaderTest {
     /** Zookeeper info */
     private static final String ZK_ADDRESS = "10.116.18.109:2181";
     private static final String ZK_PATH = "/zktest";
+    private boolean isMaster = false;
 
     public static void main(String[] args) throws InterruptedException {
         LeaderSelectorListener listener = new LeaderSelectorListener() {
@@ -75,5 +76,4 @@ public class CuratorLeaderTest {
         selector.autoRequeue();
         selector.start();
     }
-
 }

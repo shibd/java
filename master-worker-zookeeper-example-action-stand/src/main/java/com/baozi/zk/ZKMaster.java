@@ -3,6 +3,7 @@ package com.baozi.zk;
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -27,6 +28,7 @@ public class ZKMaster {
             client.createEphemeral(NODE_PATH);
             isMaster = true;
         } catch (RuntimeException e) {
+            isMaster = false;
             System.out.println("强master节点失败");
         }
     }
