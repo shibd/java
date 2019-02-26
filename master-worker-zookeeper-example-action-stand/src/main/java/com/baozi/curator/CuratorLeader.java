@@ -21,12 +21,11 @@ import java.util.Random;
  *  LeaderSelector-0 relinquish leadership!
  *      ...
  */
-public class CuratorLeaderTest {
+public class CuratorLeader {
 
     /** Zookeeper info */
-    private static final String ZK_ADDRESS = "10.116.18.109:2181";
+    private static final String ZK_ADDRESS = "10.0.193.241:2181";
     private static final String ZK_PATH = "/zktest";
-    private boolean isMaster = false;
 
     public static void main(String[] args) throws InterruptedException {
         LeaderSelectorListener listener = new LeaderSelectorListener() {

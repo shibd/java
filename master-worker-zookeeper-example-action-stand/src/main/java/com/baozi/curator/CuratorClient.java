@@ -7,7 +7,7 @@ import org.apache.curator.retry.RetryNTimes;
 /**
  * Created by baozi on 29/03/2018.
  */
-public class CuratorClientTest {
+public class CuratorClient {
 
     /** Zookeeper info */
     private static final String ZK_ADDRESS = "10.116.18.109:2181";

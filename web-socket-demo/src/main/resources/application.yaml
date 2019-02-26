@@ -1,0 +1,7 @@
+# app
+application:
+    name: web-socket-demo
+server:
+    port: 8080
+    servlet:
+        path: /web-socket-demo
