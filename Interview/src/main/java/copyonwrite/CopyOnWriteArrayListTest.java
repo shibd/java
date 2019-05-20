@@ -1,3 +1,5 @@
+package copyonwrite;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -16,15 +18,22 @@ public class CopyOnWriteArrayListTest {
             }
         });
 
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                list.clear();
-            }
-        });
+//        Thread t2 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                list.clear();
+//            }
+//        });
 
         t1.start();
-        t2.start();
+
+//        t2.start();
+
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(list.toString());
     }

@@ -74,8 +74,8 @@ public class Question5 {
 
 
     public static void main(String[] args) {
-//        int[] numbers = {1, 1, 1, 1, 2, 1, 3, 2, 1, 4, 6};
-        int[] numbers = {1, 1, 2, 3, 6, 4, 2, 4, 4, 4, 4, 4};
+        int[] numbers = {1, 1, 1, 1, 2, 1, 3, 2, 1, 4, 6};
+//        int[] numbers = {1, 1, 2, 3, 6, 4, 2, 4, 4, 4, 4, 4};
         System.out.println(moreThanHalfNum(numbers));
     }
 }
