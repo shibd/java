@@ -8,6 +8,7 @@ import java.util.EmptyStackException;
  * @Date: 2019/4/9 21:27
  * @Description:
  */
+// 你能检查出"内存泄露"吗？
 public class MyStack<T> {
     private static final int INIT_CAPACITY = 16;
     private T[] elements;
@@ -28,6 +29,9 @@ public class MyStack<T> {
         return elements[--size];
     }
 
+    /**
+     * 保证栈能自动增长，当栈中空间不足时，自动增长为原长度的两倍
+     */
     private void ensureCapacity() {
         if (elements.length == size) {
             elements = Arrays.copyOf(elements, 2 * size + 1);
@@ -36,25 +40,5 @@ public class MyStack<T> {
 
     public static void main(String[] args) {
         MyStack<String> myStack = new MyStack();
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
-        myStack.push("s");
     }
 }
