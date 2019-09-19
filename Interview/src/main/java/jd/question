@@ -1,2 +1,5 @@
-问：客户请求下单服务（OrderService），服务端会验证用户的身份（RemotePassportService），用户的银行信用（RemoteBankService），
-用户的贷款记录（RemoteLoanService）。为提高并发效率，要求三项服务验证工作同时进行，如其中任意一项验证失败，则立即返回失败，否则等待所有验证结束，成功返回。要求Java实现.
+问：客户请求下单服务（OrderService），
+服务端会验证用户的身份（RemotePassportService），用户的银行信用（RemoteBankService），
+用户的贷款记录（RemoteLoanService）。
+为提高并发效率，要求三项服务验证工作同时进行，如其中任意一项验证失败，则立即返回失败，
+否则等待所有验证结束，成功返回。要求Java实现.
