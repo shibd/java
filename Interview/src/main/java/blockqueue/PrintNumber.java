@@ -11,27 +11,48 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class PrintNumber extends Thread {
 
-    Condition my;
-    Condition other;
-    Lock lock;
-    int startNum;
+    // 共享变量
+    private static int startNum = 1;
 
-    public PrintNumber(int num, Lock lock, Condition my, Condition other) {
+    // 自己满足的条件变量
+    private Condition my;
+    // 其他人满足的条件变量
+    private Condition other;
+    // 同步锁
+    private Lock lock;
+    // 条件变量
+    private String type;
+
+    public PrintNumber(Lock lock, Condition my, Condition other, String type) {
         this.lock = lock;
         this.my = my;
         this.other = other;
-        this.startNum = num;
+        this.type = type;
+    }
+
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        Condition ji = lock.newCondition();
+        Condition ou = lock.newCondition();
+        new PrintNumber(lock, ji, ou, "odd").start();
+        new PrintNumber(lock, ou, ji, "even").start();
+    }
+
+    private boolean isMe() {
+        return (type.equals("odd") && startNum % 2 == 1) || (type.equals("even") && startNum % 2 == 0);
     }
 
     @Override
-    public void run(){
+    public void run() {
         try {
             lock.lock();
-            while (startNum <= 100) {
+            while (startNum < 100) {
+                while (!isMe()) {
+                    my.await();
+                }
                 System.out.println(startNum);
-                startNum += 2;
+                startNum++;
                 other.signalAll();
-                my.await();
             }
         } catch (Exception e) {
 
@@ -39,13 +60,5 @@ public class PrintNumber extends Thread {
             lock.unlock();
         }
 
-    }
-
-    public static void main(String[] args) {
-        Lock lock = new ReentrantLock();
-        Condition ji = lock.newCondition();
-        Condition ou = lock.newCondition();
-        new PrintNumber(1, lock, ji, ou).start();
-        new PrintNumber(2, lock, ou, ji).start();
     }
 }
