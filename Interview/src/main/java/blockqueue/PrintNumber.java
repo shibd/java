@@ -7,27 +7,32 @@ package blockqueue;
  */
 public class PrintNumber extends Thread {
 
-    // 共享变量
+    /**
+     * 共享变量
+     */
     private static int startNum = 1;
 
-    // 同步锁
-    private Object lock;
-    // 条件变量
+    /**
+     * 共享锁
+     */
+    private Object lock = PrintNumber.class;
+
+    /**
+     * MESA条件变量
+     */
     private String type;
 
-    public PrintNumber(Object lock, String type) {
-        this.lock = lock;
+    public PrintNumber(String type) {
         this.type = type;
     }
 
     public static void main(String[] args) {
-        Object lock = new Object();
-        new PrintNumber(lock, "odd").start();
-        new PrintNumber(lock, "even").start();
+        new PrintNumber("odd").start();
+        new PrintNumber("even").start();
     }
 
     /**
-     * 条件变量方法
+     * MESA条件变量
      *
      * @return
      */
